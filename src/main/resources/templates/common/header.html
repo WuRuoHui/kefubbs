@@ -1,4 +1,7 @@
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div class="fly-header layui-bg-black" th:fragment="bbsHeader">
     <div class="layui-container">
         <a class="fly-logo" th:href="@{/}">
@@ -19,26 +22,17 @@
         <ul class="layui-nav fly-nav-user">
 
             <!-- 未登入的状态 -->
-            <li class="layui-nav-item">
+            <li class="layui-nav-item" sec:authorize="isAnonymous()">
                 <a class="iconfont icon-touxiang layui-hide-xs" th:href="@{/login}"></a>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item" sec:authorize="isAnonymous()">
                 <a th:href="@{/login}">登入</a>
             </li>
-            <!-- <li class="layui-nav-item">
-               <a href="../user/reg.html">注册</a>
-             </li>-->
-            <!--      <li class="layui-nav-item layui-hide-xs">
-                    <a href="" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
-                  </li>
-                  <li class="layui-nav-item layui-hide-xs">
-                    <a href="" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" title="微博登入" class="iconfont icon-weibo"></a>
-                  </li>-->
 
             <!-- 登入后的状态 -->
-            <li class="layui-nav-item">
+            <li class="layui-nav-item" sec:authorize="isAuthenticated()">
                 <a class="fly-nav-avatar" href="javascript:;">
-                    <cite class="layui-hide-xs">贤心</cite>
+                    <cite class="layui-hide-xs" sec:authentication="principal.username"></cite>
                     <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
                     <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>
                     <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">

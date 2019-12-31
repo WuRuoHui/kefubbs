@@ -28,9 +28,8 @@ public class MyUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.wu.kefubbs.pojo.User user = userMapper.findUserByUsername(username);
         if (user == null) return null;
-        String password = passwordEncoder.encode(user.getPassword());
         Collection<GrantedAuthority> authorities = authorities();
-        return new User(username,password, authorities);
+        return new User(user.getUsername(),user.getPassword(), authorities);
     }
 
     //给当前用户指定角色
