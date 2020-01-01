@@ -8,6 +8,6 @@ public class ErrorPageController {
 
     @RequestMapping("/404")
     public String forbidden() {
-        return "/other/404";
+        return "other/404";
     }
 }

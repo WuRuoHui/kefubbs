@@ -12,9 +12,7 @@
     <link rel="stylesheet" th:href="@{/res/css/global.css}">
 </head>
 <body>
-
-<div th:replace="/common/header::bbsHeader"></div>
-
+<div th:replace="common/header::bbsHeader"></div>
 <div class="layui-container fly-marginTop">
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="user">
@@ -58,7 +56,7 @@
 </div>
 
 <!-- 引入footer -->
-<div th:replace="/common/footer::bbsFooter"></div>
+<div th:replace="common/footer::bbsFooter"></div>
 <script th:src="@{/res/layui/layui.js}"></script>
 <script type="text/javascript">
     layui.use(['form', 'layer','jquery'], function () {

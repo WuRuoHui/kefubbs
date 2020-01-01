@@ -11,9 +11,9 @@
 </head>
 <body>
 <!-- 引入header -->
-<div th:replace="/common/header::bbsHeader"></div>
+<div th:replace="common/header::bbsHeader"></div>
 <!-- 引入顶部工具条 -->
-<div th:replace="/common/column::bbsColumn"></div>
+<div th:replace="common/column::bbsColumn"></div>
 
 <div class="layui-container">
     <div class="layui-row layui-col-space15">
@@ -122,7 +122,7 @@
 
             <div class="fly-panel" style="margin-bottom: 0;">
                 <!-- 引入分类filter -->
-                <div th:replace="/common/filter::bbsFilter"></div>
+                <div th:replace="common/filter::bbsFilter"></div>
 
                 <ul class="fly-list">
                     <li>
@@ -656,13 +656,13 @@
                 </div>
             </div>
             <!-- 引入友情链接 -->
-            <div th:replace="/common/link::bbsLink"></div>
+            <div th:replace="common/link::bbsLink"></div>
         </div>
     </div>
 </div>
 
 <!-- 引入footer -->
-<div th:replace="/common/footer::bbsFooter"></div>
+<div th:replace="common/footer::bbsFooter"></div>
 
 <script th:src="@{/res/layui/layui.js}"></script>
 <script>
