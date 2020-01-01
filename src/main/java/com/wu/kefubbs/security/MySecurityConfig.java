@@ -3,6 +3,7 @@ package com.wu.kefubbs.security;
 import com.wu.kefubbs.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true,jsr250Enabled = true,securedEnabled = true)    //开权限方法权限注解支持
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
