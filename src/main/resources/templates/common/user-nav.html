@@ -1,24 +1,25 @@
-<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+<html xmlns:th="http://www.thymeleaf.org">
+<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user" th:fragment="bbsUserNav">
   <li class="layui-nav-item">
-    <a href="home.html">
+    <a th:href="@{/user/home}">
       <i class="layui-icon">&#xe609;</i>
       我的主页
     </a>
   </li>
   <li class="layui-nav-item layui-this">
-    <a href="index.html">
+    <a th:href="@{/user/index}">
       <i class="layui-icon">&#xe612;</i>
       用户中心
     </a>
   </li>
   <li class="layui-nav-item">
-    <a href="set.html">
+    <a th:href="@{/user/set}">
       <i class="layui-icon">&#xe620;</i>
       基本设置
     </a>
   </li>
   <li class="layui-nav-item">
-    <a href="message.html">
+    <a th:href="@{/user/message}">
       <i class="layui-icon">&#xe611;</i>
       我的消息
     </a>

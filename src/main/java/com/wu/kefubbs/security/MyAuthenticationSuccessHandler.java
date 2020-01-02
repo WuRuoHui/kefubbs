@@ -10,12 +10,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         httpServletResponse.setContentType("application/json;charset=utf-8");
-        httpServletResponse.getWriter().write(JsonUtils.objectToJson(LayUIResult.success()));
+        PrintWriter out = httpServletResponse.getWriter();
+        out.write(JsonUtils.objectToJson(LayUIResult.success()));
+        out.flush();
+        out.close();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         System.out.println(userDetails.getUsername());
         System.out.println(userDetails);

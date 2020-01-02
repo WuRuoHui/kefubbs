@@ -14,7 +14,6 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 
 import javax.sql.DataSource;
 
-
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true,jsr250Enabled = true,securedEnabled = true)    //开权限方法权限注解支持
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
@@ -47,6 +46,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()   //以表单验证的方式对所有的拦截资源进行认证
                 .loginPage("/login")   //自定义登录页面
+//                .successForwardUrl("/")  //登录成功后的跳转页面
                 .successHandler(new MyAuthenticationSuccessHandler())  //登录成功返回json信息
                 .failureHandler(new MyAuthenticationFailureHandler())  //登录失败返回json信息
                 .and()

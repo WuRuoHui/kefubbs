@@ -9,6 +9,7 @@ package com.wu.kefubbs.service.impl;
 import com.wu.kefubbs.commons.LayUIResult;
 import com.wu.kefubbs.mapper.UserMapper;
 import com.wu.kefubbs.pojo.User;
+import com.wu.kefubbs.pojo.UserExample;
 import com.wu.kefubbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LayUIResult login(String username, String password) {
-        User user = userMapper.findUserByUsername(username);
+        UserExample example = new UserExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        User user = userMapper.selectByExample(example).get(0);
         if (user == null) {
             return LayUIResult.build(400,"用户名或密码错误");
         } else {

@@ -1,14 +1,13 @@
 package com.wu.kefubbs.service;
 
 import com.wu.kefubbs.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.wu.kefubbs.pojo.UserExample;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,14 +18,14 @@ import java.util.List;
 @Component
 public class MyUserDetailService implements UserDetailsService {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
     @Resource(name = "userMapper")
     private UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.wu.kefubbs.pojo.User user = userMapper.findUserByUsername(username);
+        UserExample example = new UserExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        com.wu.kefubbs.pojo.User user = userMapper.selectByExample(example).get(0);
         if (user == null) return null;
         Collection<GrantedAuthority> authorities = authorities();
         return new User(user.getUsername(),user.getPassword(), authorities);

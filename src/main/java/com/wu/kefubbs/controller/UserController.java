@@ -1,6 +1,7 @@
 package com.wu.kefubbs.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //@RolesAllowed({"ROLE_USER","ROLE_MANAGER"})
 public class UserController {
 
-    @RequestMapping("/user/index")
-    public String showUserIndex() {
-        return "user/index";
+    @RequestMapping("/user/{pageName}")
+    public String showUserPage(@PathVariable(name = "pageName") String pageName) {
+        return "user/"+pageName;
     }
 }
