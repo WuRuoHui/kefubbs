@@ -4,7 +4,6 @@ import com.wu.kefubbs.mapper.UserMapper;
 import com.wu.kefubbs.pojo.UserExample;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,7 +27,8 @@ public class MyUserDetailService implements UserDetailsService {
         com.wu.kefubbs.pojo.User user = userMapper.selectByExample(example).get(0);
         if (user == null) return null;
         Collection<GrantedAuthority> authorities = authorities();
-        return new User(user.getUsername(),user.getPassword(), authorities);
+        return user;
+//        return new User(user.getUsername(),user.getPassword(), authorities);
     }
 
     //给当前用户指定角色

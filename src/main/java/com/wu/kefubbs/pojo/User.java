@@ -1,10 +1,11 @@
 package com.wu.kefubbs.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class User implements UserDetails {
     private Integer id;
@@ -24,6 +25,8 @@ public class User implements UserDetails {
     private Boolean status;
 
     private String name;
+
+    private List<Role> roleList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -62,9 +65,8 @@ public class User implements UserDetails {
     }
 
     @Override
-    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roleList;
     }
 
     public String getPassword() {
