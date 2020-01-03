@@ -1,7 +1,12 @@
 package com.wu.kefubbs.service;
 
-import com.wu.kefubbs.commons.LayUIResult;
+import com.wu.bbscommon.common.utils.LayUIResult;
+import com.wu.kefubbs.pojo.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
-    LayUIResult login(String username, String password);
+public interface UserService extends UserDetailsService {
+
+    LayUIResult list();
+
+    LayUIResult insertUser(User user);
 }

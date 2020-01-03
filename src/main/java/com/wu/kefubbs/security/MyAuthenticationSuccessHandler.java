@@ -1,7 +1,7 @@
 package com.wu.kefubbs.security;
 
-import com.wu.kefubbs.commons.JsonUtils;
-import com.wu.kefubbs.commons.LayUIResult;
+import com.wu.bbscommon.common.utils.JsonUtils;
+import com.wu.bbscommon.common.utils.LayUIResult;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -17,7 +17,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         httpServletResponse.setContentType("application/json;charset=utf-8");
         PrintWriter out = httpServletResponse.getWriter();
-        out.write(JsonUtils.objectToJson(LayUIResult.success()));
+        out.write(JsonUtils.objectToJson(LayUIResult.build(200,"登陆成功")));
         out.flush();
         out.close();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();

@@ -6,9 +6,11 @@
  **/
 package com.wu.kefubbs.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@PreAuthorize("hasRole('ROLE_USER')")
 @Controller
 public class IndexController {
 

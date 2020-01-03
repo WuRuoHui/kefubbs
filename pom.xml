@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <jedis.version>2.7.2</jedis.version>
         <docker.image.prefix>wuruohui</docker.image.prefix>
     </properties>
 
@@ -97,6 +98,16 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.13</version>
         </dependency>
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.wu</groupId>
+            <artifactId>bbs-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -126,7 +137,7 @@
                     <cmd>["java","-version"]</cmd>
                     <entryPoint>["java","jar","${project.build.finalName}.jar"]</entryPoint>
                     <!-- 指定Dockerfile路径 -->
-<!--                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
+                    <!--                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
                     <!-- 指定远程docker api地址 -->
                     <dockerHost>http://:2375</dockerHost>
                     <!-- 复制jar包到docker容器指定目录配置 -->

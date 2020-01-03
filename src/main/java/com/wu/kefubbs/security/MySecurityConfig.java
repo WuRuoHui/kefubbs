@@ -1,8 +1,9 @@
 package com.wu.kefubbs.security;
 
-import com.wu.kefubbs.service.MyUserDetailService;
+import com.wu.kefubbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,7 +20,7 @@ import javax.sql.DataSource;
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private MyUserDetailService myUserDetailService;
+    private UserService userService;
     @Autowired
     private DataSource dataSource;
 
@@ -51,17 +52,16 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(new MyAuthenticationFailureHandler())  //登录失败返回json信息
                 .and()
                 .rememberMe().tokenValiditySeconds(86400)
-//                .tokenRepository(persistentTokenRepository())
-                .userDetailsService(myUserDetailService)
                 .and()
                 .logout().deleteCookies("remember-me")
+        .and().headers().frameOptions().sameOrigin()
         ;
 //                .csrf().disable()   //关闭跨域访问
         ;
     }
 
-    /*@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(new MyUserDetailService());
-    }*/
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService);
+    }
 }

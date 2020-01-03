@@ -1,7 +1,7 @@
 package com.wu.kefubbs.security;
 
-import com.wu.kefubbs.commons.JsonUtils;
-import com.wu.kefubbs.commons.LayUIResult;
+import com.wu.bbscommon.common.utils.JsonUtils;
+import com.wu.bbscommon.common.utils.LayUIResult;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
